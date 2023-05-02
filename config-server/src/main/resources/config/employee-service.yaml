@@ -10,3 +10,13 @@ management:
   tracing:
     sampling:
       probability: 1.0
+
+spring:
+  data:
+    mongodb:
+      authentication-database: admin
+      username: admin
+      password: password
+      database: employees
+      port: 27017
+      host: localhost

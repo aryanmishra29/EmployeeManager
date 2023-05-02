@@ -20,7 +20,7 @@ public class EmployeeController {
     @PostMapping
     public Employee add(@RequestBody Employee employee){
         LOGGER.info("Employee add: {}",employee);
-        return repository.addEmployee(employee);
+        return repository.save(employee);
     }
 
     @GetMapping
@@ -32,13 +32,13 @@ public class EmployeeController {
     @GetMapping("/{id}")
     public Employee findById(@PathVariable("id") Long id){
         LOGGER.info("Employee find: id={}",id);
-        return repository.findbyId(id);
+        return repository.findById(id).orElseThrow();
     }
 
     @GetMapping("/department/{departmentId}")
     public List<Employee> findByDepartment(@PathVariable("departmentId") Long departmentId){
         LOGGER.info("Employee find: departmentId={}",departmentId);
-        return repository.findByDepartment(departmentId);
+        return repository.findByDepartmentId(departmentId);
     }
 
 

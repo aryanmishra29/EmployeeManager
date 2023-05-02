@@ -1,29 +1,17 @@
 package com.aryancodes.departmentservice.repository;
 
 import com.aryancodes.departmentservice.model.Department;
+import com.mongodb.lang.NonNull;
+import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Optional;
 
 @Repository
-public class DepartmentRepository {
+public interface DepartmentRepository extends MongoRepository<Department, Long> {
 
-    private List<Department> departments = new ArrayList<>();
+    @NonNull
+    public Optional<Department> findById(@NonNull Long id);
 
-    public Department addDepartment(Department department){
-        departments.add(department);
-        return department;
-    }
 
-    public Department findbyId(Long id){
-        return departments.stream().filter(department ->
-                department.getId().equals(id))
-                .findFirst()
-                .orElseThrow();
-    }
-
-    public List<Department> findAll(){
-        return departments;
-    }
 }
